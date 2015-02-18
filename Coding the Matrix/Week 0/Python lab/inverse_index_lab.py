@@ -74,10 +74,14 @@ def andSearch(inverseIndex, query):
     >>> andSearch(idx, ['Johann', 'Bach'])
     {0, 4}
     """
-    res=set()
-    for j in query:
-        res&=inverseIndex[j]
-    return res
+    final=set()
+    res=[set() for i in range(len(query))]
+    for j in range(len(query)):
+        res[j]|=inverseIndex[query[j]]
+    final=res[0]
+    for i in range(len(query)):
+        final&=res[i]
+    return final
     
     pass
 
